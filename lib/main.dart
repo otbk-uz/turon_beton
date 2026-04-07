@@ -471,257 +471,256 @@ class _AuthScreenState extends State<AuthScreen> {
           ),
         ),
         child: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    // Language Selector
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: IconButton(
-                          icon: const Icon(Icons.language, color: Colors.white),
-                          onPressed: _showLangPicker,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-
-                    // Logo
-                    Container(
-                      width: 100,
-                      height: 100,
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Form(
+              key: formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 20),
+                  // Language Selector
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 20,
-                            spreadRadius: 2,
-                          ),
-                        ],
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const Icon(
-                        Icons.apartment,
-                        size: 50,
-                        color: AppColors.primary,
+                      child: IconButton(
+                        icon: const Icon(Icons.language, color: Colors.white),
+                        onPressed: _showLangPicker,
                       ),
                     ),
-                    const SizedBox(height: 30),
+                  ),
+                  const SizedBox(height: 30),
 
-                    // Title
-                    Text(
-                      isLogin ? t('welcome_back') : t('create_account'),
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                  // Logo
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 20,
+                          spreadRadius: 2,
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      isLogin ? 'Hisobingizga kiring' : 'Yangi hisob oching',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white.withOpacity(0.7),
-                      ),
+                    child: const Icon(
+                      Icons.apartment,
+                      size: 50,
+                      color: AppColors.primary,
                     ),
-                    const SizedBox(height: 40),
+                  ),
+                  const SizedBox(height: 30),
 
-                    // Glass Card
-                    Container(
-                      padding: const EdgeInsets.all(28),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.95),
-                        borderRadius: BorderRadius.circular(32),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
-                            blurRadius: 30,
-                            offset: const Offset(0, 10),
+                  // Title
+                  Text(
+                    isLogin ? t('welcome_back') : t('create_account'),
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    isLogin ? 'Hisobingizga kiring' : 'Yangi hisob oching',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white.withOpacity(0.7),
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+
+                  // Glass Card
+                  Container(
+                    padding: const EdgeInsets.all(28),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.95),
+                      borderRadius: BorderRadius.circular(32),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 30,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (!isLogin) ...[
+                          _buildTextField(
+                            controller: nameCtrl,
+                            hint: t('name'),
+                            icon: Icons.person_outline,
+                            validator: (v) =>
+                                v?.isEmpty ?? true ? t('fill_fields') : null,
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (!isLogin) ...[
-                            _buildTextField(
-                              controller: nameCtrl,
-                              hint: t('name'),
-                              icon: Icons.person_outline,
-                              validator: (v) =>
-                                  v?.isEmpty ?? true ? t('fill_fields') : null,
+                          const SizedBox(height: 16),
+                          _buildTextField(
+                            controller: addressCtrl,
+                            hint: t('address'),
+                            icon: Icons.location_on_outlined,
+                          ),
+                          const SizedBox(height: 16),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(16),
                             ),
-                            const SizedBox(height: 16),
-                            _buildTextField(
-                              controller: addressCtrl,
-                              hint: t('address'),
-                              icon: Icons.location_on_outlined,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: _buildRadioTile(
+                                      'role_client', 'role_client'),
+                                ),
+                                Expanded(
+                                  child: _buildRadioTile(
+                                      'role_master', 'role_master'),
+                                ),
+                              ],
                             ),
+                          ),
+                          if (selectedRoleKey == 'role_master') ...[
                             const SizedBox(height: 16),
                             Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               decoration: BoxDecoration(
                                 color: Colors.grey.shade100,
                                 borderRadius: BorderRadius.circular(16),
                               ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: _buildRadioTile(
-                                        'role_client', 'role_client'),
-                                  ),
-                                  Expanded(
-                                    child: _buildRadioTile(
-                                        'role_master', 'role_master'),
-                                  ),
-                                ],
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  isExpanded: true,
+                                  value: selectedMasterTypeKey,
+                                  icon: const Icon(Icons.arrow_drop_down,
+                                      color: AppColors.primary),
+                                  items: masterTypesKeys.map((key) {
+                                    return DropdownMenuItem(
+                                      value: key,
+                                      child: Text(t(key),
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                    );
+                                  }).toList(),
+                                  onChanged: (v) => setState(
+                                      () => selectedMasterTypeKey = v!),
+                                ),
                               ),
                             ),
-                            if (selectedRoleKey == 'role_master') ...[
-                              const SizedBox(height: 16),
-                              Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.shade100,
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<String>(
-                                    isExpanded: true,
-                                    value: selectedMasterTypeKey,
-                                    icon: const Icon(Icons.arrow_drop_down,
-                                        color: AppColors.primary),
-                                    items: masterTypesKeys.map((key) {
-                                      return DropdownMenuItem(
-                                        value: key,
-                                        child: Text(t(key),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w500)),
-                                      );
-                                    }).toList(),
-                                    onChanged: (v) => setState(
-                                        () => selectedMasterTypeKey = v!),
-                                  ),
-                                ),
-                              ),
-                            ],
-                            const SizedBox(height: 16),
                           ],
-
-                          _buildTextField(
-                            controller: phoneCtrl,
-                            hint: t('phone'),
-                            icon: Icons.phone_outlined,
-                            keyboardType: TextInputType.phone,
-                            validator: (v) {
-                              if (v?.isEmpty ?? true) return t('fill_fields');
-                              if (v!.length < 9) return t('phone_error');
-                              return null;
-                            },
-                          ),
                           const SizedBox(height: 16),
+                        ],
 
+                        _buildTextField(
+                          controller: phoneCtrl,
+                          hint: t('phone'),
+                          icon: Icons.phone_outlined,
+                          keyboardType: TextInputType.phone,
+                          validator: (v) {
+                            if (v?.isEmpty ?? true) return t('fill_fields');
+                            if (v!.length < 9) return t('phone_error');
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 16),
+
+                        _buildTextField(
+                          controller: passCtrl,
+                          hint: t('pass'),
+                          icon: Icons.lock_outline,
+                          isPassword: true,
+                          validator: (v) {
+                            if (v?.isEmpty ?? true) return t('fill_fields');
+                            if (!isLogin && v!.length < 8)
+                              return t('password_short');
+                            return null;
+                          },
+                        ),
+
+                        if (!isLogin) ...[
+                          const SizedBox(height: 16),
                           _buildTextField(
-                            controller: passCtrl,
-                            hint: t('pass'),
+                            controller: confirmPassCtrl,
+                            hint: t('pass2'),
                             icon: Icons.lock_outline,
                             isPassword: true,
                             validator: (v) {
-                              if (v?.isEmpty ?? true) return t('fill_fields');
-                              if (!isLogin && v!.length < 8)
-                                return t('password_short');
+                              if (v != passCtrl.text)
+                                return t('password_match');
                               return null;
                             },
                           ),
-
-                          if (!isLogin) ...[
-                            const SizedBox(height: 16),
-                            _buildTextField(
-                              controller: confirmPassCtrl,
-                              hint: t('pass2'),
-                              icon: Icons.lock_outline,
-                              isPassword: true,
-                              validator: (v) {
-                                if (v != passCtrl.text)
-                                  return t('password_match');
-                                return null;
-                              },
-                            ),
-                          ],
-
-                          const SizedBox(height: 28),
-
-                          // Gradient Button
-                          Container(
-                            width: double.infinity,
-                            height: 56,
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [AppColors.primary, AppColors.accent],
-                              ),
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: AppColors.primary.withOpacity(0.4),
-                                  blurRadius: 12,
-                                  offset: const Offset(0, 6),
-                                ),
-                              ],
-                            ),
-                            child: ElevatedButton(
-                              onPressed: _loginOrRegister,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.transparent,
-                                shadowColor: Colors.transparent,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(16)),
-                              ),
-                              child: Text(
-                                t(isLogin ? 'login_btn' : 'reg_btn'),
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(height: 20),
-
-                          // Switch Auth Mode
-                          Center(
-                            child: TextButton(
-                              onPressed: () =>
-                                  setState(() => isLogin = !isLogin),
-                              child: Text(
-                                t(isLogin ? 'no_acc' : 'have_acc'),
-                                style: const TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                          ),
                         ],
-                      ),
+
+                        const SizedBox(height: 28),
+
+                        // Gradient Button
+                        Container(
+                          width: double.infinity,
+                          height: 56,
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(
+                              colors: [AppColors.primary, AppColors.accent],
+                            ),
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.primary.withOpacity(0.4),
+                                blurRadius: 12,
+                                offset: const Offset(0, 6),
+                              ),
+                            ],
+                          ),
+                          child: ElevatedButton(
+                            onPressed: _loginOrRegister,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              shadowColor: Colors.transparent,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16)),
+                            ),
+                            child: Text(
+                              t(isLogin ? 'login_btn' : 'reg_btn'),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        // Switch Auth Mode
+                        Center(
+                          child: TextButton(
+                            onPressed: () => setState(() => isLogin = !isLogin),
+                            child: Text(
+                              t(isLogin ? 'no_acc' : 'have_acc'),
+                              style: const TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -1283,8 +1282,20 @@ class HomeScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        // Drawer button qo'shildi
+                        GestureDetector(
+                          onTap: () => Scaffold.of(context).openDrawer(),
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: const Icon(Icons.menu, color: Colors.white),
+                          ),
+                        ),
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
                               'Turon Beton',
@@ -1304,14 +1315,18 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Container(
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(16),
+                        // Notification button
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: const Icon(Icons.notifications_none,
+                                color: Colors.white),
                           ),
-                          child: const Icon(Icons.notifications_none,
-                              color: Colors.white),
                         ),
                       ],
                     ),
@@ -1640,6 +1655,12 @@ class ProductsScreen extends StatelessWidget {
             pinned: true,
             elevation: 0,
             backgroundColor: AppColors.primary,
+            leading: Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(Icons.menu, color: Colors.white),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               title: Text(
                 t('catalog'),
@@ -2630,6 +2651,12 @@ class UstalarCategoriesScreen extends StatelessWidget {
             floating: true,
             pinned: true,
             backgroundColor: AppColors.primary,
+            leading: Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(Icons.menu, color: Colors.white),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               title: Text(t('masters')),
               background: Container(
@@ -3001,6 +3028,12 @@ class ProfileScreen extends StatelessWidget {
             expandedHeight: 200,
             pinned: true,
             backgroundColor: AppColors.primary,
+            leading: Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(Icons.menu, color: Colors.white),
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
+            ),
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
                 decoration: const BoxDecoration(
