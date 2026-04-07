@@ -1,0 +1,113 @@
+name: turon_beton
+description: Turon Beton - Qurilish materiallari ilovasi
+
+# Versiyani o'zgartiring: major.minor.patch+build
+version: 1.0.0+1
+
+environment:
+  # Flutter 3.16+ va Dart 3.0+ talab qiladi
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # ==========================================
+  # ASOSIY PAKETLAR (Sizning kodingiz uchun)
+  # ==========================================
+  
+  # Excel fayllar yaratish uchun (Sizning hisobotlaringiz)
+  excel: ^4.0.6
+  
+  # HTTP so'rovlar uchun (Firebase va Telegram API)
+  http: ^1.2.2
+  
+  # ==========================================
+  # QO'SHIMCHA PAKETLAR (Tavsiya etiladi)
+  # ==========================================
+  
+  # Rasm yuklash va keshlash (Optimallashtirish)
+  cached_network_image: ^3.4.1
+  
+  # Telefon qilish uchun (URL launcher)
+  url_launcher: ^6.3.1
+  
+  # Local storage (Ma'lumotlarni saqlash)
+  shared_preferences: ^2.3.3
+  provider: ^6.1.5+1
+  
+  # Xavfsizlik uchun (Tokenlarni .env fayldan o'qish)
+  # flutter_dotenv: ^5.2.1
+  
+  # Rasm tanlash (Profil rasmi uchun)
+  # image_picker: ^1.1.2
+  
+  # Push bildirishnomalar
+  # firebase_messaging: ^15.1.3
+  
+  # Animatsiyalar
+  # flutter_animate: ^4.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # Kod sifatini tekshirish
+  flutter_lints: ^5.0.0
+
+flutter:
+  # Material Design dan foydalanish
+  uses-material-design: true
+  
+  # ==========================================
+  # ASSETS (Rasmlar, fontlar, json fayllar)
+  # ==========================================
+  
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/
+  #   - assets/fonts/
+  #   - .env  # Xavfsizlik uchun (agar flutter_dotenv ishlatsangiz)
+  
+  # ==========================================
+  # FONTLAR (Tavsiya etilgan)
+  # ==========================================
+  
+  # fonts:
+  #   - family: Inter
+  #     fonts:
+  #       - asset: assets/fonts/Inter-Regular.ttf
+  #       - asset: assets/fonts/Inter-Bold.ttf
+  #         weight: 700
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: assets/fonts/Roboto-Regular.ttf
+
+  # ==========================================
+  # NATIVE SOZLAMALAR
+  # ==========================================
+  
+  # iOS uchun qo'shimcha sozlamalar
+  # cupertino_icons: ^1.0.8  # Agar kerak bo'lsa
+
+# ==========================================
+# PLATFORM SPECIFIC SOZLAMALAR
+# ==========================================
+
+# Android uchun
+# android:
+#   compileSdkVersion: 34
+#   minSdkVersion: 21
+#   targetSdkVersion: 34
+
+# iOS uchun
+# ios:
+#   deploymentTarget: '12.0'
+
+# ==========================================
+# BUILD CONFIGURATION
+# ==========================================
+
+# Release build uchun
+# flutter build apk --release
+# flutter build ios --release
