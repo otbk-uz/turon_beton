@@ -338,7 +338,7 @@ class TuronBetonApp extends StatelessWidget {
               secondary: AppColors.accent,
               surface: AppColors.surface,
               background: AppColors.background,
-              error: AppColors.error,
+              error: Color(0xFFE22825),
               onPrimary: Colors.white,
               onSecondary: Colors.white,
               onSurface: AppColors.textPrimary,
