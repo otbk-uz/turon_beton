@@ -1,7 +1,7 @@
 // ==========================================
 // 3. TARJIMA (O'zgarmadi)
 // ==========================================
-import 'package:turon_beton/main.dart';
+import 'package:turon_beton/core/app_state.dart';
 
 const Map<String, Map<String, String>> tr = {
   'uz_lat': {

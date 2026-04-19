@@ -11,73 +11,12 @@ import 'package:turon_beton/config/database/database.dart';
 import 'package:turon_beton/config/translate/translate.dart';
 import 'package:turon_beton/models/models.dart';
 import 'package:turon_beton/pages/splash.dart';
+import 'package:turon_beton/core/app_state.dart';
+import 'package:turon_beton/core/cart_provider.dart';
 
 // ==========================================
-// 4. STATE MANAGEMENT
+// 4. STATE MANAGEMENT (core/ papkadan import)
 // ==========================================
-class AppState extends ChangeNotifier {
-  static String currentLang = 'uz_lat';
-  static ThemeMode currentTheme = ThemeMode.light;
-
-  String _lang = 'uz_lat';
-  ThemeMode _theme = ThemeMode.light;
-  UserModel? _currentUser;
-
-  String get lang => _lang;
-  ThemeMode get theme => _theme;
-  UserModel? get currentUser => _currentUser;
-  bool get isAuthenticated => _currentUser != null;
-  bool get isAdmin => _currentUser?.isAdmin ?? false;
-
-  void setLang(String value) {
-    _lang = value;
-    currentLang = value;
-    notifyListeners();
-  }
-
-  void setTheme(ThemeMode value) {
-    _theme = value;
-    currentTheme = value;
-    notifyListeners();
-  }
-
-  void setUser(UserModel user) {
-    _currentUser = user;
-    notifyListeners();
-  }
-
-  void logout() {
-    _currentUser = null;
-    notifyListeners();
-  }
-}
-
-class CartProvider extends ChangeNotifier {
-  final List<CartItem> _items = [];
-
-  List<CartItem> get items => List.unmodifiable(_items);
-  int get count => _items.length;
-  bool get isEmpty => _items.isEmpty;
-
-  double get totalSum => _items.fold(0, (sum, item) => sum + item.totalPrice);
-
-  void addItem(CartItem item) {
-    _items.add(item);
-    notifyListeners();
-  }
-
-  void removeItem(int index) {
-    if (index >= 0 && index < _items.length) {
-      _items.removeAt(index);
-      notifyListeners();
-    }
-  }
-
-  void clear() {
-    _items.clear();
-    notifyListeners();
-  }
-}
 
 // ==========================================
 // 5. XIZMATLAR
